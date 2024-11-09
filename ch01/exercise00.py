@@ -1,3 +1,6 @@
+#!/usr/bin/python
+
+#
 # Chapter 01
 #
 # Exercise 00
