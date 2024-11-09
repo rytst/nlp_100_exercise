@@ -12,10 +12,11 @@ import sys
 def text_to_list(text):
     words = text.split()
 
-
+    # Uppercase range
     upper_first = ord('A')
     upper_last  = ord('Z')
 
+    # Lowercase range
     lower_first = ord('a')
     lower_last  = ord('z')
 
