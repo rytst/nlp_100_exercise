@@ -44,7 +44,7 @@ def main():
     print("Encode: ", encoded)
 
     decoded = cipher(encoded)
-    print("decode: ", decoded)
+    print("Decode: ", decoded)
 
 
 
