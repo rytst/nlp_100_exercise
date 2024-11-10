@@ -29,17 +29,6 @@ def text_to_dict(text, index_list):
         else:
             output_dict[word[0:2]] = idx + 1
 
-        # for char in word:
-
-        #     is_upper = upper_first <= ord(char) and ord(char) <= upper_last
-        #     is_lower = lower_first <= ord(char) and ord(char) <= lower_last
-
-        #     if is_upper or is_lower:
-        #         char_count += 1
-
-        # output_list.append(char_count)
-
-
     return output_dict
 
 
