@@ -3,7 +3,7 @@
 #
 # Chapter 01
 #
-# Exercise 00
+# Exercise 05
 #
 
 import sys
@@ -16,6 +16,12 @@ def ngram(text, n, method):
         words = text.split()
 
         length = len(words)
+
+        # process for (length < n)
+        if (length < n):
+            print("n is larger than the number of words")
+            exit(1)
+
         num_iter = length - (n - 1)
 
         ngram_list = []
@@ -29,6 +35,12 @@ def ngram(text, n, method):
     elif method == "char":
 
         length   = len(text)
+
+        # process for (length < n)
+        if (length < n):
+            print("n is larger than the number of characters")
+            exit(1)
+
         num_iter = length - (n - 1)
 
         ngram_list = []
