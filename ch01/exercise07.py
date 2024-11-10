@@ -18,7 +18,7 @@ def gen_text(x, y, z):
 def main():
     args = sys.argv
 
-    # Number of command line argments must be 1
+    # Number of command line argments must be 3
     if len(args) != 4:
         print("Usage:\n", args[0], 'x', 'y', 'z')
         exit(1)
