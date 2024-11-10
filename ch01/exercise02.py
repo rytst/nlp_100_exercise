@@ -33,7 +33,7 @@ def main():
     # Number of command line argments must be 2
     if len(args) != 3:
         print("Usage:\n", args[0], "string1", "string2")
-        return
+        exit(1)
 
     input_str_1 = args[1]
     input_str_2 = args[2]

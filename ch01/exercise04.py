@@ -38,7 +38,7 @@ def main():
     # Number of command line argments must be 1
     if len(args) != 2:
         print("Usage:\n", args[0], "text")
-        return
+        exit(1)
 
     text = args[1] 
 
