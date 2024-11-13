@@ -39,6 +39,9 @@ def main():
 
     article = get_article(title)
 
+   if (article == None):
+   print("Title", "\"{}\"".format(title), "is not found.")
+   return
 
     # Extract category name by regular expression
     for line in article.split('\n'):
