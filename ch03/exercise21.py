@@ -39,6 +39,8 @@ def main():
 
     article = get_article(title)
 
+
+    # Extract category name by regular expression
     for line in article.split('\n'):
         match = re.search(r"^\[\[Category:.+\]\]$", line)
         if match:
