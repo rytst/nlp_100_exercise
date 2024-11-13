@@ -46,13 +46,13 @@ def main():
 
     # Extract category name by regular expression
     for line in article.split('\n'):
-        match = re.search(r"^=+\w+=+$", line)
+        match = re.search(r"^==+\w+==+$", line)
         if match:
 
             section_name = re.search(r"\w+", line)
 
-            section_match = re.search(r"^=+", line)
-            section_level = len(section_match.group())
+            section_match = re.search(r"^==+", line)
+            section_level = len(section_match.group()) - 1
 
             print("------------------------------------")
             print("Section name:  ", section_name.group())
