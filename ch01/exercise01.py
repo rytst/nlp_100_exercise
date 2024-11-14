@@ -8,7 +8,6 @@
 
 
 def extract_str(input_str):
-
     length = len(input_str)
 
     output_length = int(length / 2)
@@ -16,7 +15,7 @@ def extract_str(input_str):
     for i in range(output_length):
         output_str.append(input_str[2 * i])
 
-    return ''.join(output_str)
+    return "".join(output_str)
 
 
 def main():

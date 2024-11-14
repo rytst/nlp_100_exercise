@@ -10,7 +10,6 @@ import sys
 
 
 def ngram(text, n, method):
-
     # n-gram for words
     if method == "word":
         words = text.split()
@@ -18,7 +17,7 @@ def ngram(text, n, method):
         length = len(words)
 
         # process for (length < n)
-        if (length < n):
+        if length < n:
             print("n is larger than the number of words")
             exit(1)
 
@@ -26,18 +25,17 @@ def ngram(text, n, method):
 
         ngram_list = []
         for i in range(num_iter):
-            elem = ' '.join(words[i:i+n])
+            elem = " ".join(words[i : i + n])
             ngram_list.append(elem)
 
         return ngram_list
 
     # n-gram for characters
     elif method == "char":
-
-        length   = len(text)
+        length = len(text)
 
         # process for (length < n)
-        if (length < n):
+        if length < n:
             print("n is larger than the number of characters")
             exit(1)
 
@@ -45,7 +43,7 @@ def ngram(text, n, method):
 
         ngram_list = []
         for i in range(num_iter):
-            elem = ''.join(text[i:i+n])
+            elem = "".join(text[i : i + n])
             ngram_list.append(elem)
 
         return ngram_list
@@ -63,14 +61,12 @@ def main():
         print("Usage:\n", args[0], "text", "n", "method")
         exit(1)
 
-    text   = args[1] 
-    n      = int(args[2])
+    text = args[1]
+    n = int(args[2])
     method = args[3]
 
     output_ngram = ngram(text=text, n=n, method=method)
     print(output_ngram)
-
-
 
 
 if __name__ == "__main__":

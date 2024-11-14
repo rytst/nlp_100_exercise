@@ -14,13 +14,12 @@ def gen_text(x, y, z):
     return x + "時の" + y + "は" + z
 
 
-
 def main():
     args = sys.argv
 
     # Number of command line argments must be 3
     if len(args) != 4:
-        print("Usage:\n", args[0], 'x', 'y', 'z')
+        print("Usage:\n", args[0], "x", "y", "z")
         exit(1)
 
     x = args[1]
@@ -29,8 +28,6 @@ def main():
 
     output_str = gen_text(x, y, z)
     print(output_str)
-
-
 
 
 if __name__ == "__main__":

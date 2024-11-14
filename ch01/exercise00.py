@@ -11,17 +11,15 @@ import sys
 
 # Reverse string
 def reverse_str(input_str):
-
     length = len(input_str)
 
     last_index = length - 1
 
     output_str = []
     for i in range(length):
-        output_str.append(input_str[last_index-i])
+        output_str.append(input_str[last_index - i])
 
-    return ''.join(output_str)
-        
+    return "".join(output_str)
 
 
 def main():
@@ -32,12 +30,10 @@ def main():
         print("Usage:\n", args[0], "string")
         exit(1)
 
-    input_str = args[1] 
+    input_str = args[1]
 
     output_str = reverse_str(input_str)
     print(output_str)
-
-
 
 
 if __name__ == "__main__":

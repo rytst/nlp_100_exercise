@@ -14,8 +14,7 @@ def text_to_dict(text, index_list):
 
     output_dict = dict()
     for idx, word in enumerate(words):
-
-        if idx+1 in index_list:
+        if idx + 1 in index_list:
             output_dict[word[0]] = idx + 1
 
         else:
@@ -32,13 +31,11 @@ def main():
         print("Usage:\n", args[0], "text")
         exit(1)
 
-    text = args[1] 
+    text = args[1]
 
     index_list = [1, 5, 6, 7, 8, 9, 15, 19]
     output_dict = text_to_dict(text, index_list)
     print(output_dict)
-
-
 
 
 if __name__ == "__main__":
