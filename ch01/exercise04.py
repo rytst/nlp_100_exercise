@@ -12,14 +12,6 @@ import sys
 def text_to_dict(text, index_list):
     words = text.split()
 
-    # Uppercase range
-    upper_first = ord('A')
-    upper_last  = ord('Z')
-
-    # Lowercase range
-    lower_first = ord('a')
-    lower_last  = ord('z')
-
     output_dict = dict()
     for idx, word in enumerate(words):
 
