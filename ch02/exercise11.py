@@ -14,7 +14,7 @@ def main():
     try:
         fp = open(INPUT_FILE, 'r')
     except OSError:
-        print("Could not open/read file:", input_file)
+        print("Could not open/read file:", INPUT_FILE)
         sys.exit()
 
     with fp:
