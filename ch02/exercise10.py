@@ -8,17 +8,12 @@
 
 import sys
 
+INPUT_FILE = "popular-names.txt"
 
 def main():
-    args = sys.argv
-
-    # Number of command line argments must be 1
-    assert len(args) == 2, "\nUsage: \n {} string".format(args[0])
-
-    input_file = args[1]
 
     try:
-        fp = open(input_file, 'r')
+        fp = open(INPUT_FILE, 'r')
     except OSError:
         print("Could not open/read file:", input_file)
         sys.exit()
