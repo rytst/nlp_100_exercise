@@ -1,4 +1,4 @@
-#!../venv/bin/python
+#!/usr/bin/python
 
 #
 # Chapter 02
