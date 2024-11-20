@@ -6,4 +6,4 @@
 # Exercise 13
 #
 
-paste -d'\t' col1.txt col2.txt
+paste -d'\t' col1.txt col2.txt >merged.txt
