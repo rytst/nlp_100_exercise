@@ -7,12 +7,12 @@
 #
 
 usage() {
-    echo "Usage: $0 n(number of lines)"
+    echo "Usage: $0 n(number of lines) filename"
     exit 1
 }
 
-if [ $# -ne 1 ]; then
+if [ $# -ne 2 ]; then
     usage
 else
-    head -n $1 popular-names.txt
+    head -n $1 $2
 fi
