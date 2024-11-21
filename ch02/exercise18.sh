@@ -6,4 +6,4 @@
 # Exercise 18
 #
 
-sort -n -k 3 popular-names.txt
+sort -n -r -k 3 popular-names.txt
