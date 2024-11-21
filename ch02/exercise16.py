@@ -8,14 +8,14 @@
 
 import sys
 
-def main():
 
+def main():
     args = sys.argv
 
     # Number of command line argments must be 2
     assert len(args) == 3, "Usage: {} n filename(to split)".format(args[0])
 
-    n          = int(args[1])
+    n = int(args[1])
     INPUT_FILE = args[2]
 
     # Try to read file
@@ -27,7 +27,6 @@ def main():
 
     with fp:
         for idx, line in enumerate(fp.readlines()):
-
             # ex: splitted0.txt, splitted1.txt, ...
             OUTPUT_FILE = "splitted{}.txt".format(idx % n)
 
@@ -35,7 +34,7 @@ def main():
             try:
                 # Initialization
                 if idx < n:
-                    open(OUTPUT_FILE, 'w').close()
+                    open(OUTPUT_FILE, "w").close()
 
                 fp = open(OUTPUT_FILE, "a")
                 fp.write(line)

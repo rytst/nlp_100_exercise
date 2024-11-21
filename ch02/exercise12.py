@@ -13,7 +13,6 @@ INPUT_FILE = "popular-names.txt"
 
 
 def main():
-
     # Try to read file
     try:
         df = pl.read_csv(INPUT_FILE, separator="\t", has_header=False)

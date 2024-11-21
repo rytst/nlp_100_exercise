@@ -8,15 +8,15 @@
 
 import sys
 
-def main():
 
+def main():
     args = sys.argv
 
     # Number of command line argments must be 2
     assert len(args) == 3, "Usage: {} n filename".format(args[0])
 
-    n           = int(args[1])
-    INPUT_FILE  = args[2]
+    n = int(args[1])
+    INPUT_FILE = args[2]
 
     try:
         fp = open(INPUT_FILE, "r")
@@ -30,8 +30,9 @@ def main():
         for idx, line in enumerate(fp.readlines()):
             print(line, end="")
 
-            if idx+1 == n:
+            if idx + 1 == n:
                 break
+
 
 if __name__ == "__main__":
     main()

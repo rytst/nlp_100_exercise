@@ -13,7 +13,6 @@ INPUT_FILE = "popular-names.txt"
 
 
 def main():
-
     # Try to read file
     try:
         df = pl.read_csv(INPUT_FILE, separator="\t", has_header=False)
@@ -23,7 +22,7 @@ def main():
 
     # sort by third column
     sorted_df = df.sort(pl.nth(2), descending=True)
-    sorted_df.write_csv(sys.stdout, separator='\t', include_header=False)
+    sorted_df.write_csv(sys.stdout, separator="\t", include_header=False)
 
 
 if __name__ == "__main__":

@@ -14,7 +14,6 @@ OUTPUT_FILE = "merged.txt"
 
 
 def main():
-
     # Initialization DataFrame
     df_left = pl.DataFrame({})
 

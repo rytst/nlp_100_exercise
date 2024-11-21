@@ -22,7 +22,8 @@ def main():
         # The readlines() read all the lines in a single go and
         # then return them as each line is a string element in a list
         for line in sorted(set(fp.readlines())):
-            print(line, end='')
+            print(line, end="")
+
 
 if __name__ == "__main__":
     main()
