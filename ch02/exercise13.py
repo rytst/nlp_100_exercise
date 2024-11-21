@@ -26,11 +26,6 @@ def main():
 
         df_left = df_left.with_columns(df_right)
 
-    try:
-        open(OUTPUT_FILE, "w")
-    except OSError:
-        print("Could not open/write file:", OUTPUT_FILE)
-
     # Write data to OUTPUT_FILE
     df_left.write_csv(OUTPUT_FILE, separator="\t")
 
