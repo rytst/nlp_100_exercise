@@ -7,12 +7,12 @@
 #
 
 usage() {
-    echo "Usage: $0 n(number to split)"
+    echo "Usage: $0 n(number to split) filename(to split)"
     exit 1
 }
 
-if [ $# -ne 1 ]; then
+if [ $# -ne 2 ]; then
     usage
 else
-    split -n r/$1 popular-names.txt
+    split -n r/$1 $2
 fi
