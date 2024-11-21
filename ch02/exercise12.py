@@ -26,11 +26,6 @@ def main():
         # col1.txt and col2.txt
         OUTPUT_FILE = "col{}.txt".format(i + 1)
 
-        #         try:
-        #             open(OUTPUT_FILE, "w")
-        #         except OSError:
-        #             print("Could not open/write file:", OUTPUT_FILE)
-
         # Write data to OUTPUT_FILE
         col.write_csv(OUTPUT_FILE, include_header=False)
 
