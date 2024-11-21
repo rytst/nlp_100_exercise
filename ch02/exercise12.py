@@ -16,7 +16,7 @@ def main():
 
     # Try to read file
     try:
-        df = pl.read_csv(INPUT_FILE, separator="\t")
+        df = pl.read_csv(INPUT_FILE, separator="\t", has_header=False)
     except OSError:
         print("Could not open/read file:", INPUT_FILE)
         sys.exit()
@@ -33,7 +33,7 @@ def main():
             print("Could not open/write file:", OUTPUT_FILE)
 
         # Write data to OUTPUT_FILE
-        col.write_csv(OUTPUT_FILE)
+        col.write_csv(OUTPUT_FILE, include_header=False)
 
 
 if __name__ == "__main__":
