@@ -25,16 +25,10 @@ def main():
         sys.exit()
 
     with fp:
-        n_lines = []
 
-        # The readlines() read all the lines in a single go and
-        # then return them as each line is a string element in a list
-        for idx, line in enumerate(reversed(fp.readlines())):
-            n_lines.append(line)
-            if idx + 1 == n:
-                break
+        n_lines = fp.readlines()[-n:]
 
-        for line in reversed(n_lines):
+        for line in n_lines:
             print(line, end="")
 
 
