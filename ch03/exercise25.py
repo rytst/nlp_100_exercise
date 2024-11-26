@@ -36,7 +36,17 @@ def main():
 
     assert article is not None, 'Title "{}"is not found.'.format(title)
 
-    # Extract category name by regular expression
+
+    """
+    {{基礎情報 国
+    |key0 = value0
+    |key1 = value1
+    |key2 = value2
+          :
+          :
+    |keyn = valuen
+    }}
+    """
     match = re.search(r"\{\{基礎情報\s\w+\n(\|.+\n)*}}", article)
 
     assert match is not None, "Basic information is not found."
@@ -46,12 +56,16 @@ def main():
     result = dict()
     for line in basic_info.split("\n"):
         match = re.search(r"=", line)
-        if match:
-            splitted  = re.split(r"=", line)
 
-            # splitted[0][1:]
-            # "|key" -> key
-            result[splitted[0][1:]] = splitted[1]
+        # Skip `{{基礎情報 国` and `}}`
+        if not match:
+            continue
+
+        splitted  = re.split(r"=", line)
+
+        # splitted[0][1:]
+        # "|key" -> "key"
+        result[splitted[0][1:]] = splitted[1]
 
     for key, value in result.items():
         print(key,":", value)
