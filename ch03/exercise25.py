@@ -23,6 +23,7 @@ def get_article(title):
         if recode["title"] == title:
             return recode["text"]
 
+
 # Basic information to dictionary
 def create_dict(basic_info):
     result = dict()
@@ -33,7 +34,7 @@ def create_dict(basic_info):
         if not match:
             continue
 
-        splitted  = re.split(r"=", line)
+        splitted = re.split(r"=", line)
 
         # splitted[0][1:]
         # "|key" -> "key"
@@ -45,7 +46,7 @@ def create_dict(basic_info):
 # Print dictionary
 def print_result(result):
     for key, value in result.items():
-        print(key,":", value)
+        print(key, ":", value)
 
 
 def main():
@@ -59,7 +60,6 @@ def main():
     article = get_article(title)
 
     assert article is not None, 'Title "{}"is not found.'.format(title)
-
 
     """
     {{基礎情報 国

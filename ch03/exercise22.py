@@ -40,8 +40,8 @@ def main():
     for line in article.split("\n"):
         match = re.search(r"^\[\[Category:.+\]\]$", line)
         if match:
-            category_name = re.sub(r"^\[\[Category:", '', line)
-            category_name = re.sub(r"(\|\W*)?\]\]$", '', category_name)
+            category_name = re.sub(r"^\[\[Category:", "", line)
+            category_name = re.sub(r"(\|\W*)?\]\]$", "", category_name)
 
             print(category_name)
 
