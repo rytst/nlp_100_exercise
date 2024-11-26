@@ -36,7 +36,6 @@ def main():
 
     assert article is not None, 'Title "{}"is not found.'.format(title)
 
-    # Extract category name by regular expression
     for line in article.split("\n"):
         match = re.search(r"^==+\w+==+$", line)
         if match:

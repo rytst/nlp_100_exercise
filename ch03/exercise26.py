@@ -3,7 +3,7 @@
 #
 # Chapter 03
 #
-# Exercise 25
+# Exercise 26
 #
 
 import sys
@@ -41,6 +41,10 @@ def create_dict(basic_info):
 
     return result
 
+def rm_emphasis(basic_info):
+    removed = re.sub(r"'{2,3}|'{5}", "", basic_info)
+    return removed
+
 
 # Print dictionary
 def print_result(result):
@@ -76,6 +80,7 @@ def main():
     assert match is not None, "Basic information is not found."
 
     basic_info = match.group()
+    basic_info = rm_emphasis(basic_info)
     result = create_dict(basic_info)
     print_result(result)
 
