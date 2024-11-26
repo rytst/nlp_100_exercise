@@ -36,7 +36,6 @@ def main():
 
     assert article is not None, 'Title "{}"is not found.'.format(title)
 
-    # Extract category name by regular expression
     for line in article.split("\n"):
         match = re.search(r"^==+\s?\w+\s?==+$", line) # Space character
         if match:
@@ -47,7 +46,7 @@ def main():
             # Header style syntax check
             assert len(section_match_head.group()) == len(section_match_tail.group()), "Header style error"
 
-            # Section level of `==` is 1
+            # Section level of `== Section ==` is 1
             section_level = len(section_match_head.group()) - 1
 
             print("------------------------------------")
