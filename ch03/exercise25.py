@@ -28,17 +28,15 @@ def get_article(title):
 def create_dict(basic_info):
     result = dict()
     for line in basic_info.split("\n"):
-        match = re.search(r"=", line)
+        splitted = re.findall(r"\|(.+)=(.+)", line)
 
         # Skip `{{基礎情報 国` and `}}`
-        if not match:
+        if len(splitted) == 0:
             continue
-
-        splitted = re.split(r"=", line)
 
         # splitted[0][1:]
         # "|key" -> "key"
-        result[splitted[0][1:]] = splitted[1]
+        result[splitted[0][0]] = splitted[0][1]
 
     return result
 
