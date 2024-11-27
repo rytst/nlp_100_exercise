@@ -45,12 +45,11 @@ def rm_emphasis(basic_info):
     removed = re.sub(r"'{2,3}|'{5}", "", basic_info)
     return removed
 
+
 def rm_inlink(basic_info):
     basic_info = re.sub(r"\[\[.+\|(.+?)\]\]", r"\1", basic_info)
     removed = re.sub(r"\[\[(.+?)\]\]", r"\1", basic_info)
     return removed
-
-
 
 
 # Print dictionary

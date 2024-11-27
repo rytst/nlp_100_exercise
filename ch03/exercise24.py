@@ -38,10 +38,11 @@ def main():
 
     # Using group in RegEx
     # In non greedy way
-    results = re.findall(r'\[\[:?(ファイル|File|Media):(.+?)(\|.+?)*\]\]', article)
+    results = re.findall(r"\[\[:?(ファイル|File|Media):(.+?)(\|.+?)*\]\]", article)
 
     for result in results:
         print(result[1])
+
 
 if __name__ == "__main__":
     main()

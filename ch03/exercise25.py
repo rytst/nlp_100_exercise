@@ -36,7 +36,7 @@ def create_dict(basic_info):
 
         # splitted[0][1:]
         # "|key" -> "key"
-        result[splitted[0][0].strip()] = splitted[0][1].strip() # remove space
+        result[splitted[0][0].strip()] = splitted[0][1].strip()  # remove space
 
     return result
 

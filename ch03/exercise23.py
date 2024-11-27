@@ -39,7 +39,7 @@ def main():
     for line in article.split("\n"):
         results = re.findall(r"^(==+)\s?(\w+)\s?(==+)$", line)  # Space character
 
-        if len(results) > 0: # match?
+        if len(results) > 0:  # match?
             section_match_head = results[0][0]
             section_match_tail = results[0][2]
 

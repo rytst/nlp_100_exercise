@@ -37,7 +37,7 @@ def create_dict(basic_info):
 
         # splitted[0][1:]
         # "|key" -> "key"
-        result[splitted[0][0].strip()] = splitted[0][1].strip() # remove space
+        result[splitted[0][0].strip()] = splitted[0][1].strip()  # remove space
 
     return result
 
@@ -53,7 +53,7 @@ def im_name_to_url(image_name):
         "format": "json",
         "prop": "imageinfo",
         "titles": "File:{}".format(image_name),
-        "iiprop": "url"
+        "iiprop": "url",
     }
     R = S.get(url=URL, params=PARAMS)
     DATA = R.json()
@@ -95,7 +95,7 @@ def main():
 
     try:
         image_name = result["国旗画像"]
-    except:
+    except KeyError:
         print("Key is not found.")
         sys.exit()
 
