@@ -37,22 +37,22 @@ def main():
     assert article is not None, 'Title "{}"is not found.'.format(title)
 
     for line in article.split("\n"):
-        match = re.search(r"^==+\s?\w+\s?==+$", line)  # Space character
-        if match:
-            section_name = re.search(r"\w+", line)
-            section_match_head = re.search(r"^==+", line)
-            section_match_tail = re.search(r"==+$", line)
+        results = re.findall(r"^(==+)\s?(\w+)\s?(==+)$", line)  # Space character
 
-            # Header style syntax check
-            assert len(section_match_head.group()) == len(
-                section_match_tail.group()
+        if len(results) > 0: # match?
+            section_match_head = results[0][0]
+            section_match_tail = results[0][2]
+
+            assert len(section_match_head) == len(
+                section_match_tail
             ), "Header style error"
 
             # Section level of `== Section ==` is 1
-            section_level = len(section_match_head.group()) - 1
+            section_level = len(section_match_head) - 1
+            section_name = results[0][1]
 
             print("------------------------------------")
-            print("Section name:  ", section_name.group())
+            print("Section name:  ", section_name)
             print("Section level: ", section_level)
 
 
