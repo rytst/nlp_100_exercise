@@ -38,13 +38,10 @@ def main():
 
     # Extract category name by regular expression
     for line in article.split("\n"):
-        match = re.search(r"^\[\[Category:.+\]\]$", line)
-        if match:
-            category_name = re.sub(r"^\[\[Category:", "", line)
-            category_name = re.sub(r"(\|\W*)?\]\]$", "", category_name)
+        results = re.findall(r"^\[\[Category:(.+?)(\|\W*)?\]\]$", line)
 
-            print(category_name)
-
+        if len(results) > 0:
+            print(results[0][0])
 
 if __name__ == "__main__":
     main()
