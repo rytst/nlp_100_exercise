@@ -1,14 +1,15 @@
-#!/usr/bin/python
+#!../venv/bin/python
 
 #
 # Chapter 03
 #
-# Exercise 25
+# Exercise 29
 #
 
 import sys
 import json
 import re
+import requests
 
 
 # Get article from json by giving title key
@@ -41,10 +42,26 @@ def create_dict(basic_info):
     return result
 
 
-# Print dictionary
-def print_result(result):
-    for key, value in result.items():
-        print(key, ":", value)
+def im_name_to_url(image_name):
+    S = requests.Session()
+
+    # API
+    URL = "https://en.wikipedia.org/w/api.php"
+
+    PARAMS = {
+        "action": "query",
+        "format": "json",
+        "prop": "imageinfo",
+        "titles": "File:{}".format(image_name),
+        "iiprop": "url"
+    }
+    R = S.get(url=URL, params=PARAMS)
+    DATA = R.json()
+    data = DATA["query"]["pages"]
+
+    key, value = next(iter(data.items()))  # 最初の要素を取得
+
+    return value["imageinfo"][0]["url"]
 
 
 def main():
@@ -75,7 +92,15 @@ def main():
 
     basic_info = match.group()
     result = create_dict(basic_info)
-    print_result(result)
+
+    try:
+        image_name = result["国旗画像"]
+    except:
+        print("Key is not found.")
+        sys.exit()
+
+    url = im_name_to_url(image_name)
+    print(url)
 
 
 if __name__ == "__main__":

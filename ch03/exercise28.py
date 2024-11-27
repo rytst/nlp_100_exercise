@@ -3,7 +3,7 @@
 #
 # Chapter 03
 #
-# Exercise 25
+# Exercise 28
 #
 
 import sys
@@ -36,9 +36,21 @@ def create_dict(basic_info):
 
         # splitted[0][1:]
         # "|key" -> "key"
-        result[splitted[0][0].strip()] = splitted[0][1].strip() # remove space
+        result[splitted[0][0].strip()] = splitted[0][1].strip()
 
     return result
+
+
+def rm_emphasis(basic_info):
+    removed = re.sub(r"'{2,3}|'{5}", "", basic_info)
+    return removed
+
+def rm_inlink(basic_info):
+    basic_info = re.sub(r"\[\[.+\|(.+?)\]\]", r"\1", basic_info)
+    removed = re.sub(r"\[\[(.+?)\]\]", r"\1", basic_info)
+    return removed
+
+
 
 
 # Print dictionary
@@ -74,7 +86,10 @@ def main():
     assert match is not None, "Basic information is not found."
 
     basic_info = match.group()
+    basic_info = rm_emphasis(basic_info)
+    basic_info = rm_inlink(basic_info)
     result = create_dict(basic_info)
+
     print_result(result)
 
 
