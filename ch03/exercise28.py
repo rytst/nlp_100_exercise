@@ -47,8 +47,28 @@ def rm_emphasis(basic_info):
 
 
 def rm_inlink(basic_info):
+    basic_info = re.sub(r"\[\[([^|]+?)\]\]", r"\1", basic_info)
     basic_info = re.sub(r"\[\[.+\|(.+?)\]\]", r"\1", basic_info)
-    removed = re.sub(r"\[\[(.+?)\]\]", r"\1", basic_info)
+    basic_info = re.sub(r"\[\[", "", basic_info)
+    removed = re.sub(r"\]\]", "", basic_info)
+
+    return removed
+
+def rm_outlink(basic_info):
+    removed = re.sub(r"\[.+?\]", "", basic_info)
+    return removed
+
+def rm_curly(basic_info):
+    basic_info = re.sub(r"\{\{([^|]+?)\}\}", r"\1", basic_info)
+    basic_info = re.sub(r"\{\{.+\|(.+?)\}\}", r"\1", basic_info)
+    basic_info = re.sub(r"\{\{", "", basic_info)
+    removed = re.sub(r"\}\}", "", basic_info)
+    return removed
+
+
+def rm_angle(basic_info):
+    basic_info = re.sub(r"<(.+?)>", "", basic_info)
+    removed = re.sub(r"<(.+?)/>", "", basic_info)
     return removed
 
 
@@ -86,7 +106,10 @@ def main():
 
     basic_info = match.group()
     basic_info = rm_emphasis(basic_info)
+    basic_info = rm_curly(basic_info)
     basic_info = rm_inlink(basic_info)
+    basic_info = rm_outlink(basic_info)
+    basic_info = rm_angle(basic_info)
     result = create_dict(basic_info)
 
     print_result(result)
