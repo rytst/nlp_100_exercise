@@ -36,20 +36,12 @@ def main():
 
     assert article is not None, 'Title "{}"is not found.'.format(title)
 
-    for line in article.split("\n"):
-        match = re.search(r"^==+\w+==+$", line)
-        if match:
-            section_name = re.search(r"\w+", line)
+    # Using group in RegEx
+    # In non greedy way
+    results = re.findall(r'\[\[:?(ファイル|File|Media):(.+?)(\|.+?)*\]\]', article)
 
-            section_match = re.search(r"^==+", line)
-            section_level = len(section_match.group()) - 1
-
-            print("------------------------------------")
-            print("Section name:  ", section_name.group())
-            print("Section level: ", section_level)
-
-    print("------------------------------------")
-
+    for result in results:
+        print(result[1])
 
 if __name__ == "__main__":
     main()
