@@ -59,7 +59,7 @@ def im_name_to_url(image_name):
     DATA = R.json()
     data = DATA["query"]["pages"]
 
-    key, value = next(iter(data.items()))  # 最初の要素を取得
+    key, value = next(iter(data.items()))  # Get first item
 
     return value["imageinfo"][0]["url"]
 
