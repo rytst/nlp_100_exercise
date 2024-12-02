@@ -7,6 +7,7 @@
 #
 
 import sys
+import json
 import MeCab
 
 INPUT_FILE  = "./neko.txt"
@@ -18,11 +19,20 @@ except OSError:
     sys.exit()
 
 with f:
-    contents = f.read()
+    contents = f.readlines()
 
-wakati = MeCab.Tagger("-Owakati")
-tagger = MeCab.Tagger()
-new_contents = tagger.parse(contents)
+data = dict()
+data["lines"] = list()
+for content in contents:
+    wakati = MeCab.Tagger("-Owakati")
+    tagger = MeCab.Tagger()
+    tokens = tagger.parse(content)
+
+    line_info = list()
+    for token in tokens.split('\n'):
+        line_info.append(token.split('\t'))
+
+    data["lines"].append(line_info)
 
 try:
     f = open(OUTPUT_FILE, "w")
@@ -30,4 +40,4 @@ except OSError:
     sys.exit()
 
 with f:
-    f.write(new_contents)
+    json.dump(data, f, ensure_ascii=False,indent=2)
