@@ -10,6 +10,11 @@ import sys
 import json
 
 
+def print_dict(arg_dict):
+    for k, v in arg_dict.items():
+        print(k, ":", v)
+
+
 def main():
     args = sys.argv
 
@@ -33,7 +38,12 @@ def main():
 
         for token in token_list:
             token_pos = token["pos"]
-            if token_pos == "空白" or token_pos == "助詞" or token_pos == "助動詞" or token_pos == "補助記号":
+            if (
+                token_pos == "空白"
+                or token_pos == "助詞"
+                or token_pos == "助動詞"
+                or token_pos == "補助記号"
+            ):
                 continue
             token_base = token["base"]
             if token_base not in word_cnt:
@@ -41,9 +51,11 @@ def main():
 
             word_cnt[token_base] += 1
 
-    sorted_word_cnt = {k: v for k, v in sorted(word_cnt.items(), key=lambda item: item[1], reverse=True)}
-    print(sorted_word_cnt)
-
+    sorted_word_cnt = {
+        k: v
+        for k, v in sorted(word_cnt.items(), key=lambda item: item[1], reverse=True)
+    }
+    print_dict(sorted_word_cnt)
 
 
 if __name__ == "__main__":
