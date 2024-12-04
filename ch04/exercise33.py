@@ -8,6 +8,7 @@
 
 import sys
 import json
+from collections import deque
 
 
 def main():
@@ -30,6 +31,15 @@ def main():
 
         token_list        = record["line"]
         token_list_length = len(token_list)
+
+        # length of "A の B" must be 3 or more
+        if token_list_length < 3:
+            continue
+
+        # Initialization for queue
+        q = deque()
+        q.append(token_list[0])
+        q.append(token_list[1])
         for idx in range(token_list_length):
 
             # idx: A, idx+1: "の", idx+2: B
@@ -37,17 +47,17 @@ def main():
             if idx + 2 > token_list_length - 1:
                 break
 
-            first_token  = token_list[idx]
-            second_token = token_list[idx+1]
-            third_token  = token_list[idx+2]
-            if second_token["surface"] != "の":
+            q.append(token_list[idx+2])
+            if q[1]["surface"] != "の":
                 continue
 
-            if first_token["pos"] != "名詞" or third_token["pos"] != "名詞":
+            if q[0]["pos"] != "名詞" or q[2]["pos"] != "名詞":
                 continue
 
-            result = first_token["surface"] + second_token["surface"] + third_token["surface"]
+            result = q[0]["surface"] + q[1]["surface"] + q[2]["surface"]
             print(result)
+
+            q.popleft()
 
 
 if __name__ == "__main__":
