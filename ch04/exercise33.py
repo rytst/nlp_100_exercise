@@ -49,9 +49,11 @@ def main():
 
             q.append(token_list[idx+2])
             if q[1]["surface"] != "の":
+                q.popleft()
                 continue
 
             if q[0]["pos"] != "名詞" or q[2]["pos"] != "名詞":
+                q.popleft()
                 continue
 
             result = q[0]["surface"] + q[1]["surface"] + q[2]["surface"]
