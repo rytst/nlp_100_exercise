@@ -58,7 +58,6 @@ def main():
 
             result = q[0]["surface"] + q[1]["surface"] + q[2]["surface"]
             print(result)
-
             q.popleft()
 
 
