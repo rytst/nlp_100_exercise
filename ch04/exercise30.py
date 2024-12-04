@@ -9,7 +9,7 @@
 import sys
 import json
 
-
+# Read text file
 def read_text(file_name):
     try:
         f = open(file_name, "r")
@@ -22,7 +22,7 @@ def read_text(file_name):
 
     return lines
 
-
+# Create mapping
 def create_dict(token):
 
     info_dict = dict()
@@ -37,7 +37,7 @@ def create_dict(token):
 
     return info_dict
 
-
+# Generate json record
 def gen_record(file_name, output_file):
 
     try:
