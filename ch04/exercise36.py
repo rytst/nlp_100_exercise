@@ -49,6 +49,8 @@ def main():
             ):
                 continue
             token_base = token["base"]
+
+            # Initialization
             if token_base not in word_cnt:
                 word_cnt[token_base] = 1
                 continue
