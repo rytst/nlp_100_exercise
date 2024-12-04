@@ -10,7 +10,6 @@ import sys
 import json
 
 
-
 def main():
     args = sys.argv
 
@@ -32,7 +31,6 @@ def main():
         for token in record["line"]:
             if token["pos"] == "動詞":
                 print(token["surface"])
-
 
 
 if __name__ == "__main__":

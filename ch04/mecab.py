@@ -10,7 +10,7 @@ import sys
 import json
 import MeCab
 
-INPUT_FILE  = "./neko.txt"
+INPUT_FILE = "./neko.txt"
 OUTPUT_FILE = "./neko.txt.mecab"
 
 try:
@@ -29,8 +29,8 @@ for content in contents:
     tokens = tagger.parse(content)
 
     line_info = list()
-    for token in tokens.split('\n'):
-        line_info.append(token.split('\t'))
+    for token in tokens.split("\n"):
+        line_info.append(token.split("\t"))
 
     data["lines"].append(line_info)
 
@@ -40,4 +40,4 @@ except OSError:
     sys.exit()
 
 with f:
-    json.dump(data, f, ensure_ascii=False,indent=2)
+    json.dump(data, f, ensure_ascii=False, indent=2)
