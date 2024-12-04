@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import japanize_matplotlib
 
 
+# Dispaly given dictionary data
 def print_dict(arg_dict):
     for k, v in arg_dict.items():
         print(k, ":", v)
@@ -49,7 +50,8 @@ def main():
                 continue
             token_base = token["base"]
             if token_base not in word_cnt:
-                word_cnt[token_base] = 0
+                word_cnt[token_base] = 1
+                continue
 
             word_cnt[token_base] += 1
 
