@@ -29,7 +29,6 @@ def main():
         record = json.loads(json_line)
 
         for token in record["line"]:
-
             # extract "動詞"
             if token["pos"] == "動詞":
                 print(token["surface"])

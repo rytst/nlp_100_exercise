@@ -37,11 +37,11 @@ def main():
                 continue
 
             if len(seq) > 0:
-                print(''.join(seq))
+                print("".join(seq))
                 seq = list()
 
         if len(seq) > 0:
-            print(''.join(seq))
+            print("".join(seq))
 
 
 if __name__ == "__main__":

@@ -29,7 +29,7 @@ def main():
     for json_line in json_lines:
         record = json.loads(json_line)
 
-        token_list        = record["line"]
+        token_list = record["line"]
         token_list_length = len(token_list)
 
         # length of "A の B" must be 3 or more
@@ -41,13 +41,12 @@ def main():
         q.append(token_list[0])
         q.append(token_list[1])
         for idx in range(token_list_length):
-
             # idx: A, idx+1: "の", idx+2: B
             # token_list_length-1: last index
             if idx + 2 > token_list_length - 1:
                 break
 
-            q.append(token_list[idx+2])
+            q.append(token_list[idx + 2])
             if q[1]["surface"] != "の":
                 q.popleft()
                 continue
