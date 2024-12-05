@@ -38,6 +38,7 @@ def main():
 
         token_list = record["line"]
 
+        # Skip unused token
         for token in token_list:
             token_pos = token["pos"]
             if (
@@ -56,6 +57,7 @@ def main():
 
             word_cnt[token_base] += 1
 
+    # Sort by value
     sorted_word_cnt = {
         k: v
         for k, v in sorted(word_cnt.items(), key=lambda item: item[1], reverse=True)

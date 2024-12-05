@@ -38,6 +38,7 @@ def main():
 
         token_list = record["line"]
 
+        # Skip unused token
         for token in token_list:
             token_pos = token["pos"]
             if (
@@ -47,6 +48,7 @@ def main():
                 or token_pos == "補助記号"
             ):
                 continue
+
             token_base = token["base"]
 
             # Initialization
@@ -61,9 +63,10 @@ def main():
         for k, v in sorted(word_cnt.items(), key=lambda item: item[1], reverse=True)
     }
 
+    # Plotting
     fig = plt.figure()
-    data = list(sorted_word_cnt.values())
-    order = range(len(data))
+    data = list(sorted_word_cnt.values()) # Y
+    order = range(len(data)) # X
     plt.plot(order, data)
     plt.xscale("log", base=10)
     plt.yscale("log", base=10)

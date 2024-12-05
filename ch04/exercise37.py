@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 import japanize_matplotlib
 
 
+# If "猫" is in `token_list`, return True
+# Otherwise, return False
 def is_cat_line(token_list):
     for token in token_list:
         if "猫" in token["base"]:
@@ -45,6 +47,8 @@ def main():
 
         token_list = record["line"]
 
+        # If there is no "猫" in `token_list`,
+        # no need to consider that line
         if not is_cat_line(token_list):
             continue
 
@@ -52,6 +56,7 @@ def main():
             token_pos = token["pos"]
             token_base = token["base"]
 
+            # Skip unused token
             if (
                 token_pos == "空白"
                 or token_pos == "助詞"
@@ -68,14 +73,17 @@ def main():
 
             word_cnt[token_base] += 1
 
+    # Sort by value
     sorted_word_cnt = {
         k: v
         for k, v in sorted(word_cnt.items(), key=lambda item: item[1], reverse=True)
     }
 
+    # First 10 elements
     top_10 = dict(list(sorted_word_cnt.items())[0:10])
     print_dict(top_10)
 
+    # Plotting
     fig = plt.figure()
     plt.bar(*zip(*top_10.items()))
     fig.savefig("./figure/exercise37.png")
