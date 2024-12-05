@@ -9,7 +9,6 @@
 import sys
 import json
 import matplotlib.pyplot as plt
-import japanize_matplotlib
 
 
 # Dispaly given dictionary data
