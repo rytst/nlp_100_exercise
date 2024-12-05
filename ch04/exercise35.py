@@ -30,6 +30,7 @@ def main():
     with fp:
         json_lines = list(fp)
 
+    # word_cnt: word_cnt["word"] = count
     word_cnt = dict()
     for json_line in json_lines:
         record = json.loads(json_line)
@@ -37,6 +38,8 @@ def main():
         token_list = record["line"]
 
         for token in token_list:
+
+            # Skip unused token
             token_pos = token["pos"]
             if (
                 token_pos == "空白"
@@ -45,12 +48,16 @@ def main():
                 or token_pos == "補助記号"
             ):
                 continue
+
             token_base = token["base"]
+
+            # If the key is not found, then add the key to dictionary
             if token_base not in word_cnt:
                 word_cnt[token_base] = 0
 
             word_cnt[token_base] += 1
 
+    # Sort by value
     sorted_word_cnt = {
         k: v
         for k, v in sorted(word_cnt.items(), key=lambda item: item[1], reverse=True)
