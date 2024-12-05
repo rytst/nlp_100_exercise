@@ -53,7 +53,8 @@ def main():
 
             # If the key is not found, then add the key to dictionary
             if token_base not in word_cnt:
-                word_cnt[token_base] = 0
+                word_cnt[token_base] = 1
+                continue
 
             word_cnt[token_base] += 1
 
