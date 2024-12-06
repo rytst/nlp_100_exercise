@@ -1,0 +1,88 @@
+#!/usr/bin/python
+
+#
+# Chapter 05
+#
+# Exercise 41
+#
+
+import sys
+from collections import deque
+from copy import deepcopy
+
+
+class Morph:
+    def __init__(self, token_and_info):
+        self.surface = token_and_info[0]
+        self.base    = token_and_info[1][-3]
+        self.pos     = token_and_info[1][0]
+        self.pos1    = token_and_info[1][1]
+
+class Chunk:
+    morphs = list()
+    def setup(self, dependency_info):
+        info_list = dependency_info.split()
+        self.dst  = info_list[2]
+        self.srcs = info_list[1]
+
+    def add_morph(self, morph):
+        self.morphs.append(morph)
+
+    def reset(self):
+        self.morphs = list()
+        self.dst    = None
+        self.srcs   = None
+
+    def show(self):
+        print("dst: {}, srcs: {}".format(self.dst, self.srcs))
+        for morph in self.morphs:
+            print(morph.surface)
+
+def print_chunk_list(chunk_list):
+    for chunk in chunk_list:
+        if chunk == "EOS":
+            print("EOS")
+            continue
+        chunk.show()
+
+def main():
+    args = sys.argv
+
+    # Number of command line argments must be 1
+    assert len(args) == 2, "Usage: {} file".format(args[0])
+    file_name = args[1]
+
+    try:
+        fp = open(file_name, "r")
+    except OSError:
+        print("Could not read {} ...".format(file_name))
+        sys.exit()
+
+    chunk_list = list()
+    with fp:
+        q = deque(fp.read().splitlines())
+
+        chunk = Chunk()
+        while len(q) > 0:
+            elem = q.popleft()
+            if elem == "EOS":
+                chunk_list.append("EOS")
+                continue
+            if elem[0] == "*":
+                chunk.setup(elem)
+                continue
+            token_and_info = elem.split()
+            morph = Morph(token_and_info)
+            chunk.add_morph(morph)
+            next = q[0]
+            if next == "EOS" or next[0] == "*":
+                chunk_list.append(deepcopy(chunk))
+                chunk.reset()
+
+    print_chunk_list(chunk_list)
+
+
+
+
+if __name__ == "__main__":
+    main()

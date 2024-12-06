@@ -10,11 +10,11 @@ import sys
 
 
 class Morph:
-    def __init__(self, surface, base, pos, pos1):
-        self.surface = surface
-        self.base = base
-        self.pos = pos
-        self.pos1 = pos1
+    def __init__(self, token_and_info):
+        self.surface = token_and_info[0]
+        self.base    = token_and_info[1][-3]
+        self.pos     = token_and_info[1][0]
+        self.pos1    = token_and_info[1][1]
 
 
 def main():
@@ -32,8 +32,7 @@ def main():
 
     morph_list = list()
     with fp:
-        for line in fp.readlines():
-            line = line.strip()  # Remove new line
+        for line in fp.read().splitlines():
             if line[0] == "*":
                 continue
 
@@ -44,14 +43,8 @@ def main():
                 morph_list.append(token)
                 continue
 
-            # Get information from text data
-            surface = token
-            base = token_and_info[1][-3]
-            pos = token_and_info[1][0]
-            pos1 = token_and_info[1][1]
-
             # Create instance
-            morph = Morph(surface, base, pos, pos1)
+            morph = Morph(token_and_info)
             morph_list.append(morph)
 
     # Print expected data
