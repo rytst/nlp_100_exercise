@@ -20,24 +20,30 @@ class Morph:
 
 class Chunk:
     morphs = list()
+
+    # Set dst and srcs
     def setup(self, dependency_info):
         info_list = dependency_info.split()
         self.dst  = info_list[2]
         self.srcs = info_list[1]
 
+    # Add morph to morphs
     def add_morph(self, morph):
         self.morphs.append(morph)
 
+    # Reset member variable
     def reset(self):
         self.morphs = list()
         self.dst    = None
         self.srcs   = None
 
+    # Print member variable
     def show(self):
         print("dst: {}, srcs: {}".format(self.dst, self.srcs))
         for morph in self.morphs:
             print(morph.surface)
 
+# Print chunk_list
 def print_chunk_list(chunk_list):
     for chunk in chunk_list:
         if chunk == "EOS":
@@ -68,12 +74,17 @@ def main():
             if elem == "EOS":
                 chunk_list.append("EOS")
                 continue
+
+            # Set dependency information
             if elem[0] == "*":
                 chunk.setup(elem)
                 continue
             token_and_info = elem.split()
             morph = Morph(token_and_info)
             chunk.add_morph(morph)
+
+            # If the token is end of chunk,
+            # add the chunk to chunk_list
             next = q[0]
             if next == "EOS" or next[0] == "*":
                 chunk_list.append(deepcopy(chunk))
