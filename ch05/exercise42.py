@@ -3,7 +3,7 @@
 #
 # Chapter 05
 #
-# Exercise 41
+# Exercise 42
 #
 
 import sys
@@ -46,26 +46,8 @@ class Chunk:
         for morph in self.morphs:
             print(morph.surface)
 
-# Print chunk_list
-def print_chunk_list(chunk_list):
-    for chunk in chunk_list:
-        if chunk == "EOS":
-            print("EOS")
-            continue
-        chunk.show()
-
-def main():
-    args = sys.argv
-
-    # Number of command line argments must be 1
-    assert len(args) == 2, "Usage: {} file".format(args[0])
-    file_name = args[1]
-
-    try:
-        fp = open(file_name, "r")
-    except OSError:
-        print("Could not read {} ...".format(file_name))
-        sys.exit()
+# Generate chunk_list
+def make_chunk_list(fp):
 
     chunk_list = list()
     with fp:
@@ -92,7 +74,31 @@ def main():
             if next == "EOS" or next[0] == "*":
                 chunk_list.append(deepcopy(chunk))
                 chunk.reset()
+    return chunk_list
 
+
+# Print chunk_list
+def print_chunk_list(chunk_list):
+    for chunk in chunk_list:
+        if chunk == "EOS":
+            print("EOS")
+            continue
+        chunk.show()
+
+def main():
+    args = sys.argv
+
+    # Number of command line argments must be 1
+    assert len(args) == 2, "Usage: {} file".format(args[0])
+    file_name = args[1]
+
+    try:
+        fp = open(file_name, "r")
+    except OSError:
+        print("Could not read {} ...".format(file_name))
+        sys.exit()
+
+    chunk_list = make_chunk_list(fp)
     print_chunk_list(chunk_list)
 
 
