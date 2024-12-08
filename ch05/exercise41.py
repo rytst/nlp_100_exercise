@@ -15,9 +15,10 @@ from copy import deepcopy
 class Morph:
     def __init__(self, token_and_info):
         self.surface = token_and_info[0]
-        self.base    = token_and_info[1][-3]
-        self.pos     = token_and_info[1][0]
-        self.pos1    = token_and_info[1][1]
+        self.base = token_and_info[1][-3]
+        self.pos = token_and_info[1][0]
+        self.pos1 = token_and_info[1][1]
+
 
 class Chunk:
     morphs = list()
@@ -27,7 +28,7 @@ class Chunk:
         info_list = dependency_info.split()
         dst = re.findall(r"-?\d+", info_list[2])
 
-        self.dst  = int(dst[0])
+        self.dst = int(dst[0])
         self.srcs = info_list[1]
 
     # Add morph to morphs
@@ -37,8 +38,8 @@ class Chunk:
     # Reset member variable
     def reset(self):
         self.morphs = list()
-        self.dst    = None
-        self.srcs   = None
+        self.dst = None
+        self.srcs = None
 
     # Print member variable
     def show(self):
@@ -46,9 +47,9 @@ class Chunk:
         for morph in self.morphs:
             print(morph.surface)
 
+
 # Generate chunk_list
 def make_chunk_list(fp):
-
     chunk_list = list()
     with fp:
         q = deque(fp.read().splitlines())
@@ -85,6 +86,7 @@ def print_chunk_list(chunk_list):
             continue
         chunk.show()
 
+
 def main():
     args = sys.argv
 
@@ -100,8 +102,6 @@ def main():
 
     chunk_list = make_chunk_list(fp)
     print_chunk_list(chunk_list)
-
-
 
 
 if __name__ == "__main__":
