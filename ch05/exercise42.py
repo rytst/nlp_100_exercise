@@ -14,10 +14,11 @@ from copy import deepcopy
 
 class Morph:
     def __init__(self, token_and_info):
+        info = token_and_info[1].split(",")
         self.surface = token_and_info[0]
-        self.base = token_and_info[1][-3]
-        self.pos = token_and_info[1][0]
-        self.pos1 = token_and_info[1][1]
+        self.base    = info[-3]
+        self.pos     = info[0]
+        self.pos1    = info[1]
 
 
 class Chunk:
@@ -28,8 +29,8 @@ class Chunk:
         info_list = dependency_info.split()
         dst = re.findall(r"-?\d+", info_list[2])
 
-        self.dst = int(dst[0])
-        self.srcs = info_list[1]
+        self.dst  = int(dst[0])
+        self.srcs = int(info_list[1])
 
     # Add morph to morphs
     def add_morph(self, morph):
@@ -78,13 +79,49 @@ def make_chunk_list(fp):
     return chunk_list
 
 
-# Print chunk_list
-def print_chunk_list(chunk_list):
-    for chunk in chunk_list:
-        if chunk == "EOS":
-            print("EOS")
+def get_chunk_txt(chunk):
+    txt = ""
+    for morph in chunk.morphs:
+        if morph.pos == "記号":
             continue
-        chunk.show()
+        txt += morph.surface
+    return txt
+
+
+def find_chunk_by_dst(chunk_list, dst, idx):
+
+    i = 0
+    i_end_flag = False
+
+    j = 0
+    j_end_flag = False
+    while True:
+        chunk_forward = chunk_list[idx+i]
+        chunk_backward = chunk_list[idx+j]
+
+        if chunk_forward == "EOS":
+            i_end_flag = True
+        else:
+            i += 1
+
+        if chunk_backward == "EOS":
+            j_end_flag = True
+        else:
+            j -= 1
+
+        if not i_end_flag:
+            if chunk_forward.srcs == dst:
+                return chunk_forward
+
+        if not j_end_flag:
+            if chunk_backward.srcs == dst:
+                return chunk_backward
+
+        if i_end_flag and j_end_flag:
+            print("Could not find dst ...")
+            sys.exit()
+
+
 
 
 def main():
@@ -101,7 +138,27 @@ def main():
         sys.exit()
 
     chunk_list = make_chunk_list(fp)
-    print_chunk_list(chunk_list)
+
+    for idx, chunk in enumerate(chunk_list):
+
+        # If chunk is "EOS" then, skip "EOS"
+        if chunk == "EOS":
+            continue
+
+        srcs = chunk.srcs
+        dst  = chunk.dst
+        # If there is no destination, then skip the chunk
+        if dst == -1:
+            continue
+
+        srcs_txt = get_chunk_txt(chunk)
+
+        dst_chunk = find_chunk_by_dst(chunk_list, dst, idx)
+        dst_txt = get_chunk_txt(dst_chunk)
+
+        print("{}:{}\t{}:{}".format(srcs, srcs_txt, dst, dst_txt))
+
+
 
 
 if __name__ == "__main__":
