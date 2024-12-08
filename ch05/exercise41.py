@@ -29,8 +29,8 @@ class Chunk:
         info_list = dependency_info.split()
         dst = re.findall(r"-?\d+", info_list[2])
 
-        self.dst = int(dst[0])
-        self.srcs = info_list[1]
+        self.dst  = int(dst[0])
+        self.srcs = int(info_list[1])
 
     # Add morph to morphs
     def add_morph(self, morph):
