@@ -11,10 +11,11 @@ import sys
 
 class Morph:
     def __init__(self, token_and_info):
+        info = token_and_info[1].split(",")
         self.surface = token_and_info[0]
-        self.base = token_and_info[1][-3]
-        self.pos = token_and_info[1][0]
-        self.pos1 = token_and_info[1][1]
+        self.base    = info[-3]
+        self.pos     = info[0]
+        self.pos1    = info[1]
 
 
 def main():
@@ -51,7 +52,11 @@ def main():
     for morph in morph_list:
         if morph == "EOS":
             continue
-        print(morph.surface, ":    ", morph.pos)
+        print("------------------------")
+        print("表層形:", morph.surface)
+        print("基本形:", morph.base)
+        print("品詞:", morph.pos)
+        print("品詞細分類1:", morph.pos1)
 
 
 if __name__ == "__main__":

@@ -14,10 +14,11 @@ from copy import deepcopy
 
 class Morph:
     def __init__(self, token_and_info):
+        info = token_and_info[1].split(",")
         self.surface = token_and_info[0]
-        self.base = token_and_info[1][-3]
-        self.pos = token_and_info[1][0]
-        self.pos1 = token_and_info[1][1]
+        self.base    = info[-3]
+        self.pos     = info[0]
+        self.pos1    = info[1]
 
 
 class Chunk:
@@ -43,6 +44,7 @@ class Chunk:
 
     # Print member variable
     def show(self):
+        print("--------------------------")
         print("dst: {}, srcs: {}".format(self.dst, self.srcs))
         for morph in self.morphs:
             print(morph.surface)
