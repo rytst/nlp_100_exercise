@@ -172,7 +172,6 @@ def main():
             continue
 
         srcs = chunk.srcs
-        dst  = chunk.dst
 
         (verb, have_verb) = get_verb(chunk)
         if not have_verb:
