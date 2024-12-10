@@ -184,23 +184,32 @@ def main():
         if not srcs_chunk_list:
             continue
 
-        postpositional_set = set()
+        postpositional_clause_list = list()
         for srcs_chunk in srcs_chunk_list:
             (postpositional, have_postpositional) = get_postpositional(srcs_chunk)
             if not have_postpositional:
                 continue
-            postpositional_set.add(postpositional)
+            clause = get_chunk_txt(srcs_chunk)
+            postpositional_clause_list.append((postpositional, clause))
 
         # Sort
-        postpositional_list = sorted(list(postpositional_set))
+        postpositional_clause_list = sorted(
+            postpositional_clause_list,
+            key=lambda x:x[0]
+        )
 
         # If the list is empty, then nothing to do
-        if not postpositional_list:
+        if not postpositional_clause_list:
             continue
 
+        postpositional_list, clause_list = zip(*postpositional_clause_list)
         # Write line to file
         write_line(
-            "{}\t{}\n".format(verb, " ".join(postpositional_list)),
+            "{}\t{}\t{}\n".format(
+                verb,
+                " ".join(postpositional_list),
+                " ".join(clause_list)
+            ),
             out_file
         )
 
