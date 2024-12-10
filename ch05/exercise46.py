@@ -3,7 +3,7 @@
 #
 # Chapter 05
 #
-# Exercise 45
+# Exercise 46
 #
 
 import sys
