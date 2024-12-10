@@ -133,6 +133,16 @@ def get_verb(chunk):
             return (morph.base, True)
     return ("", False)
 
+def write_line(line, file):
+    try:
+        fp = open(file, "a")
+    except OSError:
+        print("Could not open file ...")
+        sys.exit()
+
+    with fp:
+        fp.write(line)
+
 def main():
     args = sys.argv
 
@@ -188,16 +198,10 @@ def main():
         if not postpositional_list:
             continue
 
-        try:
-            fp = open(out_file, "a")
-        except OSError:
-            print("Could not open file ...")
-            sys.exit()
-
-        with fp:
-            fp.write("{}\t{}\n".format(verb, " ".join(postpositional_list)))
-
-
+        write_line(
+            "{}\t{}\n".format(verb, " ".join(postpositional_list)),
+            out_file
+        )
 
 
 if __name__ == "__main__":
