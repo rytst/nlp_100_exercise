@@ -137,13 +137,20 @@ def main():
     args = sys.argv
 
     # Number of command line argments must be 1
-    assert len(args) == 2, "Usage: {} file".format(args[0])
-    file_name = args[1]
+    assert len(args) == 3, "Usage: {} in_file out_file".format(args[0])
+    in_file  = args[1]
+    out_file = args[2]
 
     try:
-        fp = open(file_name, "r")
+        open(out_file, "w").close()
     except OSError:
-        print("Could not read {} ...".format(file_name))
+        print("Could not read {} ...".format(out_file))
+        sys.exit()
+
+    try:
+        fp = open(in_file, "r")
+    except OSError:
+        print("Could not read {} ...".format(in_file))
         sys.exit()
 
     chunk_list = make_chunk_list(fp)
@@ -181,7 +188,14 @@ def main():
         if not postpositional_list:
             continue
 
-        print("{}\t{}".format(verb, " ".join(postpositional_list)))
+        try:
+            fp = open(out_file, "a")
+        except OSError:
+            print("Could not open file ...")
+            sys.exit()
+
+        with fp:
+            fp.write("{}\t{}\n".format(verb, " ".join(postpositional_list)))
 
 
 
