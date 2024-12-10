@@ -122,7 +122,7 @@ def find_chunk_by_srcs(chunk_list, srcs, idx):
             return srcs_chunk_list
 
 def get_postpositional(chunk):
-    for morph in chunk.morphs:
+    for morph in reversed(chunk.morphs):
         if morph.pos == "助詞":
             return (morph.base, True)
     return ("", False)
