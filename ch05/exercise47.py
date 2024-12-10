@@ -154,7 +154,7 @@ def get_srcs_chunk_list(chunk_list, dst, idx):
         if i_end_flag and j_end_flag:
             return srcs_chunk_list
 
-
+# Write line to file
 def write_line(line, file):
     try:
         fp = open(file, "a")
@@ -178,7 +178,7 @@ def get_verb(chunk):
             return (morph.base, True)
     return ("", False)
 
-
+# Exercise47 expected
 def get_expected(chunk):
     length = len(chunk.morphs)
     for idx, morph in enumerate(chunk.morphs):
@@ -252,6 +252,8 @@ def main():
             )
 
             depend_list.append((expected_string, verb, postpositional_clause_list))
+
+    # Write to file
     for depend in depend_list:
         if not depend[2]: # Empty?
             write_line("{}\n".format(depend[0]+depend[1]), out_file)
