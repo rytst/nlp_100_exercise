@@ -162,6 +162,8 @@ def main():
             continue
 
         srcs_chunk_list = find_chunk_by_srcs(chunk_list, srcs, idx)
+
+        # If there is no srcs chunk, then skip
         if not srcs_chunk_list:
             continue
 
@@ -171,6 +173,8 @@ def main():
             if not have_postpositional:
                 continue
             postpositional_set.add(postpositional)
+
+        # Sort
         postpositional_list = sorted(list(postpositional_set))
 
         # If the list is empty, then nothing to do
