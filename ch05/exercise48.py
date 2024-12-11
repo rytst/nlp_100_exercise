@@ -175,7 +175,7 @@ def main():
 
         path = path_to_root(chunk, chunk_list, idx)
 
-        print(path, "\n")
+        print(path)
 
 
 
