@@ -23,5 +23,6 @@ scipy==1.14.1
 setuptools==75.6.0
 six==1.16.0
 threadpoolctl==3.5.0
+tqdm==4.67.1
 unidic-lite==1.0.8
 urllib3==2.2.3
