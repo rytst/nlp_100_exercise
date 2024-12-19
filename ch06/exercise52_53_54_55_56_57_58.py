@@ -129,6 +129,7 @@ def main():
     # Exercise57
     coef = clf.coef_
     show_top10(coef, enc, train)
+    wall()
     show_bottom10(coef, enc, train)
     wall()
 
