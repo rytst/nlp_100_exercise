@@ -3,7 +3,7 @@
 #
 # Chapter 07
 #
-# Exercise 66 67
+# Exercise 69
 #
 
 IN_FILE = "./countries_of_the_world.csv"
