@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 #
 # Chapter 07
@@ -6,7 +6,7 @@
 # Exercise 64
 #
 
-IN_FILE = "./questions-words_test.txt"
+IN_FILE = "./questions-words.txt"
 OUT_FILE = "./exercise64.txt"
 
 from gensim import models
