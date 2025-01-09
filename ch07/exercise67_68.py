@@ -43,7 +43,7 @@ def main():
 
     countries = pl.Series(
         pl.read_csv(IN_FILE, has_header=True).select(
-            pl.col("Country").str.strip_chars().str.replace(" ", "_").str.replace("'", "")
+            pl.col("Country").str.strip_chars().str.replace(" ", "_")
         )
     ).to_list()
 
