@@ -20,7 +20,7 @@ from scipy.cluster.hierarchy import linkage, dendrogram
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
 
-figure(figsize=(16, 4), dpi=1024)
+figure(figsize=(16, 16), dpi=512)
 
 def get_vec(wv, name):
     try:
@@ -61,13 +61,15 @@ def main():
         except:
             pass
     label = KMeans(n_clusters = 5).fit_predict(np.array(data["vecs"]).reshape(-1, 1))
-    for zone, country in zip(label, data["countries"]):
-        print("------------------------")
-        print("Zone: ", zone)
-        print("country: ", country)
 
-    dendro = dendrogram(linkage(data["vecs"], method="ward"), labels=data["countries"])
-    plt.savefig("./dendro.png", format="png")
+    tsne = TSNE(n_components=2, random_state = 0, perplexity = 30, max_iter = 1000)
+    embedded = tsne.fit_transform(np.array(data["vecs"]))
+
+    col_list = ["r", "g", "b", "c", "m"]
+    for X, country, clu in zip(embedded, countries, label):
+        plt.plot(X[0], X[1], color = col_list[clu], marker="o")
+        plt.annotate(country, xy=(X[0], X[1]))
+    plt.savefig("./tsne.png")
 
 if __name__ == "__main__":
     main()
