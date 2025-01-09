@@ -20,7 +20,7 @@ def main():
         print("Could not read file")
         sys.exit()
 
-    res = wv.most_similar(positive=["United_States"])[:10]
+    res = wv.most_similar(positive=["United_States"])
     print(res)
 
 
