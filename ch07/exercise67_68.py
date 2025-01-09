@@ -15,11 +15,16 @@ from tqdm import tqdm
 import polars as pl
 from scipy.stats import spearmanr
 from sklearn.cluster import KMeans
+from sklearn.manifold import TSNE
+from scipy.cluster.hierarchy import linkage, dendrogram
+import matplotlib.pyplot as plt
+from matplotlib.pyplot import figure
+
+figure(figsize=(16, 4), dpi=1024)
 
 def get_vec(wv, name):
     try:
         vec = wv[name]
-        print(vec)
         return vec
     except:
         return None
@@ -55,15 +60,14 @@ def main():
             data["countries"].append(country)
         except:
             pass
-    print(data)
-    pred = KMeans(n_clusters = 5).fit_predict(np.array(data["vecs"]).reshape(-1, 1))
-    for zone, name in zip(pred, data["countries"]):
+    label = KMeans(n_clusters = 5).fit_predict(np.array(data["vecs"]).reshape(-1, 1))
+    for zone, country in zip(label, data["countries"]):
         print("------------------------")
         print("Zone: ", zone)
-        print("country: ", name)
+        print("country: ", country)
+
+    dendro = dendrogram(linkage(data["vecs"], method="ward"), labels=data["countries"])
+    plt.savefig("./dendro.png", format="png")
 
 if __name__ == "__main__":
     main()
-
-# Corr: 0.7000166486272194
-# P: 2.86866666051422e-53
